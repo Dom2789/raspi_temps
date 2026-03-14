@@ -1,6 +1,8 @@
 from vcgencmd import Vcgencmd
+import warnings
 
 def main():
+    warnings.filterwarnings("ignore", category=SyntaxWarning, module="vcgencmd")
     print("Hello from raspi-temps!")
 
     vcgm = Vcgencmd()
