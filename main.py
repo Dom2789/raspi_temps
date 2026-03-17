@@ -18,6 +18,7 @@ def main():
         temp_str = f"Temperature: {vcgm.measure_temp()}°C"
         print(temp_str)
         client.publish(f"pi/temps/{NAME}", temp_str)
+        sleep(10)
 
 if __name__ == "__main__":
     main()
