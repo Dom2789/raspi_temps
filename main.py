@@ -18,10 +18,10 @@ def main():
 
     vcgm = Vcgencmd()
     client = mqtt.Client()
-    client.connect("192.168.178.100", 1883)
+    client.connect("192.168.178.103", 1883)
 
     while True:
-        cpu = psutil.cpu_percent(interval=1)  # → 7.2
+        cpu = psutil.cpu_percent(interval=1)
         temp_str = f"Temperature: {vcgm.measure_temp()}°C CPU: {cpu}%"
         print(temp_str)
         client.publish(f"pi/temps/{name}", temp_str)
