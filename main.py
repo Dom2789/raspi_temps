@@ -1,6 +1,6 @@
 from vcgencmd import Vcgencmd
 import warnings, psutil, argparse
-from time import sleep
+from time import sleep, strftime
 import paho.mqtt.client as mqtt
 
 def main():
@@ -22,9 +22,10 @@ def main():
 
     while True:
         cpu = psutil.cpu_percent(interval=1)
-        temp_str = f"Temperature: {vcgm.measure_temp()}°C CPU: {cpu}%"
-        print(temp_str)
-        client.publish(f"pi/temps/{name}", temp_str)
+        timestamp = strftime("%H:%M:%S")
+        payload = f"[{timestamp}] [temp: {vcgm.measure_temp()}°C] [load: {cpu}%]"
+        print(payload)
+        client.publish(f"pi/temps/{name}", payload)
         sleep(10)
 
 if __name__ == "__main__":
