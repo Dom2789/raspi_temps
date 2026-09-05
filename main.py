@@ -18,7 +18,7 @@ def main():
 
     vcgm = Vcgencmd()
     client = mqtt.Client()
-    client.connect("192.168.1.42", 1883)
+    client.connect("192.168.1.225", 1883)
 
     while True:
         cpu = psutil.cpu_percent(interval=1)
